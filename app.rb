@@ -44,8 +44,6 @@ class App
       specialization = gets.chomp
       @people.push(Teacher.new(specialization, age, name))
       puts "#{name.capitalize} added successfully 💓"
-    else
-      puts 'Invalid number'
     end
   end
 
