@@ -15,6 +15,10 @@ class Person < Nameable
     @parent_permission || is_of_age?
   end
 
+  def correct_name 
+    @name
+  end
+
 ############ private methods ############
   private
   def of_age?
