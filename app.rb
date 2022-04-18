@@ -2,19 +2,16 @@ require_relative './book'
 require_relative './student'
 require_relative './teacher'
 require_relative './rental'
+require './separations/books_app.rb'
 
 class App
+  attr_accessor :rentals, :books, :people
+
   def initialize
     @books = []
     @people = []
     @rentals = []
-  end
-
-  def list_all_books
-    puts 'No books found' if @books.empty?
-    @books.each_with_index do |book, index|
-      puts "(#{index + 1}) Book => Title: #{book.title}, Author: #{book.author}"
-    end
+    @books = BookModule.new(@books)
   end
 
   def list_all_people
@@ -25,7 +22,7 @@ class App
   end
 
   def create_person()
-    puts 'Do you want create student (1) or teacher (2)? [Enter the number]: '
+    puts 'Do you want create student🧑‍🎓 (1) or teacher🧑‍🏫 (2)? [Enter the number]: '
     person_type = gets.chomp.to_i
     case person_type
     when 1
@@ -47,22 +44,12 @@ class App
     end
   end
 
-  def create_book
-    puts 'Create a new book'
-    print 'Enter title: '
-    title = gets.chomp
-    print 'Enter author: '
-    author = gets.chomp
-    @books.push(Book.new(title, author))
-    puts "#{title} book added successfully 😊"
-  end
-
   def create_rental()
-    puts 'Select a book from the following list by the number:'
+    puts 'Select a book from the following list by the number:📖'
     list_all_books
     book_number = gets.chomp.to_i
     puts ' '
-    puts 'Select a person from the following list by the number:'
+    puts 'Select a person from the following list by the number:🧑‍🎓🧑‍🏫'
     list_all_people
     person_number = gets.chomp.to_i
     print 'Date: '
@@ -103,13 +90,13 @@ class App
     selection = gets.chomp.to_i
     case selection
     when 1
-      list_all_books
+      @books.list_all_books
     when 2
       list_all_people
     when 3
       create_person
     when 4
-      create_book
+      @books.create_book
     when 5
       create_rental
     when 6
