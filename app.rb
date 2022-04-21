@@ -8,12 +8,10 @@ require_relative './classes/rentalsApp'
 ################################################################
 class App
   def initialize
-    @people = []
     @rentals = []
-    @books = []
     @rentals = RentalsApp.new({ rentals: @rentals, people: @people, books: @books })
-    @books = BooksApp.new(@books)
-    @people = PeopleApp.new(@people)
+    @books = BooksApp.new
+    @people = PeopleApp.new
   end
 
   def main_menu

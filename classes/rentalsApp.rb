@@ -20,6 +20,7 @@ class RentalsApp
       puts "#{index + 1}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     person_number = gets.chomp.to_i
+    p @people[person_number-1]
     print 'Date: '
     date = gets.chomp
     @rentals.push(Rental.new(date, @people[person_number - 1], @books[book_number - 1]))
